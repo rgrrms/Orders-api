@@ -9,7 +9,6 @@ import com.test.ordersapi.domains.business.SingleOrderBO;
 import com.test.ordersapi.domains.entity.Orders;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 public final class OrdersConverter {
 
     public static OrdersBO toOrdersBO(OrdersRequest ordersRequest) {
-        return OrdersBO.builder().ordersListBO(ordersRequest.getOrdersRequests().stream()
+        return OrdersBO.builder().ordersListBO(ordersRequest.getSingleOrderRequest().stream()
                 .map(OrdersConverter::toSingleOrderBO).collect(Collectors.toList())).build();
     }
 
@@ -26,7 +25,7 @@ public final class OrdersConverter {
         return SingleOrderBO.builder()
                 .controlNumber(singleOrderRequest.getControlNumber())
                 .date(singleOrderRequest.getDate())
-                .name(singleOrderRequest.getName())
+                .name(singleOrderRequest.getName().trim())
                 .unitaryValue(singleOrderRequest.getValue())
                 .quantity(singleOrderRequest.getQuantity())
                 .customerCode(singleOrderRequest.getCustomerCode())

@@ -1,23 +1,24 @@
 package com.test.ordersapi.domains.api.v1.web.request;
 
-import jakarta.validation.constraints.Max;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrdersRequest {// testar mudanca pra record
-    @Size(min = 1, max = 10)
-    private List<SingleOrderRequest> ordersRequests;
+public class OrdersRequest {
+    @Valid
+    @Size(min = 1, max = 10, message = "{order.listOrders}")
+    @JacksonXmlProperty(localName = "pedidos")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JsonProperty("pedidos")
+    private List<SingleOrderRequest> singleOrderRequest;
 }
-//número controle - número aleatório informado pelo cliente.
-//data cadastro (opcional)
-//nome - nome do produto
-//valor - valor monetário unitário produto
-//quantidade (opcional) - quantidade de produtos.
-//codigo cliente - identificação numérica do cliente.

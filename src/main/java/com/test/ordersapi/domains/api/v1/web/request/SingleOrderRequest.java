@@ -1,43 +1,43 @@
 package com.test.ordersapi.domains.api.v1.web.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import lombok.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class SingleOrderRequest {// testar mudanca pra record
-    @NotNull
+public class SingleOrderRequest {
+    @NotNull(message = "{order.controlNumber}")
     @JsonProperty("numeroControle")
-    @JacksonXmlProperty(isAttribute = true)
     private Long controlNumber;
 
     @Builder.Default
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonProperty("data")
     private LocalDate date = LocalDate.now();
 
-    @NotBlank
+    @NotBlank(message = "{order.name}")
+    @Size(min = 1, max = 100, message = "{order.nameMax}")
+    @JsonProperty("nome")
     private String name;
 
-    @NotNull
+    @NotNull(message = "{order.value}")
+    @JsonProperty("valor")
     private BigDecimal value;
 
     @Builder.Default
+    @JsonProperty("quantidade")
     private BigDecimal quantity = BigDecimal.valueOf(1.0);
 
-    @NotNull
+    @NotNull(message = "{order.customerCode}")
+    @JsonProperty("codigoCliente")
     private Long customerCode;
 }
-//número controle - número aleatório informado pelo cliente.
-//data cadastro (opcional)
-//nome - nome do produto
-//valor - valor monetário unitário produto
-//quantidade (opcional) - quantidade de produtos.
-//codigo cliente - identificação numérica do cliente.

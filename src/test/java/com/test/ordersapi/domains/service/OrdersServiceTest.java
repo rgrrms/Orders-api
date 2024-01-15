@@ -53,6 +53,7 @@ public class OrdersServiceTest {
 
     @BeforeEach
     void setup() {
+        messagesComponent.setMessages(messages);
         page = new PageImpl<>(Collections.singletonList(OrdersStub.getEntity()), Pageable.ofSize(10), 1);
         rb = ResourceBundle.getBundle("messages");
     }
@@ -97,6 +98,8 @@ public class OrdersServiceTest {
 
             ordersService.findAllOrders(1L, LocalDate.now(), Pageable.ofSize(10));
 
+            Mockito.verify(ordersRepository).findAll(any(Specification.class), (Pageable) any());
+            Mockito.verify(ordersRepository, Mockito.times(2)).isEquals(any(), any());
         }
     }
 }

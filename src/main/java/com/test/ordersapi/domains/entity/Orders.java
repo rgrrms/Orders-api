@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -36,14 +35,3 @@ public class Orders {
     @Column(name = "customer_code")
     private Long customerCode;
 }
-//CREATE TABLE `orders`.`orders` (
-//  `id` INT NOT NULL AUTO_INCREMENT,
-//  `control_number` INT NOT NULL,
-//  `date` DATE NOT NULL,
-//  `name` VARCHAR(100) NOT NULL,
-//  `unitary_value` DECIMAL(10) NOT NULL,
-//  `quantity` DECIMAL(10) NOT NULL,
-//  `amount` DECIMAL(10) NOT NULL,
-//  `customer_code` INT NOT NULL,
-//  PRIMARY KEY (`id`),
-//  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);

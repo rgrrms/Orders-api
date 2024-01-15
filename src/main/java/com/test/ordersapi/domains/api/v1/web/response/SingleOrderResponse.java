@@ -5,27 +5,31 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @Builder
-public class SingleOrderResponse {// testar mudanca pra record
+public class SingleOrderResponse {
     @JsonProperty("numeroControle")
     private Long controlNumber;
 
+    @JsonProperty("data")
     private LocalDate date;
 
+    @JsonProperty("nome")
     private String name;
 
+    @JsonProperty("valorUnitario")
     private BigDecimal value;
 
+    @JsonProperty("quantidade")
     private BigDecimal quantity;
 
+    @JsonProperty("valorTotal")
     private BigDecimal amount;
 
+    @JsonProperty("codigoCliente")
     private Long customerCode;
 }

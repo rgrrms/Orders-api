@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "2af8b83d-b5ca-4e04-9130-fc9aae86000d",
+		"name": "API DE PEDIDOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10225773"
+	},
+	"item": [
+		{
+			"name": "Criar Pedidos JSON",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pedidos\": [\r\n        {\r\n            \"numeroControle\": 63,\r\n            \"nome\": \"Produto Um\",\r\n            \"data\": \"2024-01-05\",\r\n            \"valor\": 2.50,\r\n            \"quantidade\": 5,\r\n            \"codigoCliente\": 40\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders-api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders-api",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Pedidos XML",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<OrdersRequest>\r\n    <pedidos>\r\n        <numeroControle>62</numeroControle>\r\n        <nome>Produto Dois</nome>\r\n        <data>2024-01-11</data>\r\n        <valor>3.00</valor>\r\n        <quantidade>3</quantidade>\r\n        <codigoCliente>20</codigoCliente>\r\n    </pedidos>\r\n</OrdersRequest>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders-api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders-api",
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Pedidos",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/orders-api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders-api",
+						"v1",
+						"orders"
+					],
+					"query": [
+						{
+							"key": "numeroControle",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "data",
+							"value": "2024-01-13",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actuator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/orders-api/v1/actuator/health/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders-api",
+						"v1",
+						"actuator",
+						"health",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

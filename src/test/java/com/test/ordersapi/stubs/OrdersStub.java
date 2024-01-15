@@ -34,7 +34,7 @@ public class OrdersStub {
     public static String getRequest() {
         return """
                 {
-                    "ordersRequests": [
+                    "pedidos": [
                         {
                             "numeroControle": 2,
                             "name": "Produto Um",
@@ -55,7 +55,6 @@ public class OrdersStub {
                 .name("Produto Um")
                 .unitaryValue(new BigDecimal(10))
                 .quantity(new BigDecimal(5))
-//                .amount(new BigDecimal(50))
                 .customerCode(2L)
                 .build();
     }

@@ -1,5 +1,6 @@
 package com.test.ordersapi.domains.api.v1.web;
 
+import com.test.ordersapi.domains.business.OrdersBO;
 import com.test.ordersapi.domains.business.SingleOrderBO;
 import com.test.ordersapi.domains.services.impl.OrdersServiceImpl;
 import com.test.ordersapi.stubs.OrdersStub;
@@ -63,6 +64,8 @@ public class OrdersControllerTest {
     @DisplayName("saveOrders() - Should Return 201 Created")
     @Test
     void saveOrders() throws Exception {
+        Mockito.when(ordersService.createOrders(any(OrdersBO.class))).thenReturn(OrdersStub.getBO());
+
         mockMvc.perform(MockMvcRequestBuilders.post(PATH)
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
